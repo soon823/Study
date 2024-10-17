@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"></jsp:include> 
-<h3>수정화면(modifyForm.jsp)</h3>
+<h3>삭제화면(modifyForm.jsp)</h3>
 
 <%
    String msg = (String) request.getAttribute("msg");
@@ -30,7 +30,7 @@
       </tr>
       <tr>
          <td colspan="4" align="center">
-            <input class="btn btn-success" type="submit" value="저장">
+            <input class="btn btn-success" type="submit" value="삭제">
             <input class="btn btn-danger" type="reset" value="취소">
          </td>
       </tr>

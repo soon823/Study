@@ -18,11 +18,14 @@ public class BoardControl implements Control {
 		
 		// board.do -> 상세조회(bno) -> 조회 -> board.jsp출력
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO board = svc.searchBoard(Integer.parseInt(bno));
 		
 		req.setAttribute("boardvo", board);
+		req.setAttribute("page", page);
 		
 		req.getRequestDispatcher("WEB-INF/jsp/board.jsp").forward(req, resp);;
 		

@@ -31,6 +31,7 @@ public class FrontController extends HttpServlet{
 		map.put("/memberAddForm.do", new MemberAddFormControl());
 		map.put("/memberAdd.do", new MemberAddControl());
 		
+		
 		// 게시판 관련
 		map.put("/boardList.do", new BoardListControl());
 		// 게시글 상세화면
@@ -42,6 +43,9 @@ public class FrontController extends HttpServlet{
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		// 글삭제 
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		// 로그인
+		map.put("/loginForm.do", new LoginControl());
+		map.put("/logOut.do", new LogOutControl());
 	}
 	
 	@Override

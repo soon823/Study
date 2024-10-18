@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"></jsp:include> 
-<h3>삭제화면(modifyForm.jsp)</h3>
+<h3>삭제화면(removeForm.jsp)</h3>
 
 <%
    String msg = (String) request.getAttribute("msg");

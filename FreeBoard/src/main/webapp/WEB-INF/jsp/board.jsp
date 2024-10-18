@@ -7,6 +7,7 @@
 <h3>상세페이지(board.jsp)</h3>
 <%
 	BoardVO bvo = (BoardVO)request.getAttribute("boardvo");
+	String pg = (String)request.getAttribute("page");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	String wdate = sdf.format(bvo.getWriteDate());
 %>
@@ -29,7 +30,7 @@
 		<th>작성일시</th><td colspan="3"><%=wdate %></td>
 	</tr>
 	<tr>
-			<td colspan="2">
+			<td colspan="4" align="center">
 				<input type="button" value="수정" class="btn btn-warning">
 				<input type="button" value="삭제" class="btn btn-danger">
 			</td>
@@ -42,7 +43,7 @@
 <script>
 	document.querySelector('input[value="수정"]')//
 	.addEventListener('click',function(e){
-		location.href = 'modifyBoard.do?bno=<%=bvo.getBoardNo() %>';
+		location.href = 'modifyBoard.do?page=<%=pg %>&bno=<%=bvo.getBoardNo() %>';
 	});
 	document.querySelector('input[value="삭제"]')//
 	.addEventListener('click',function(e){

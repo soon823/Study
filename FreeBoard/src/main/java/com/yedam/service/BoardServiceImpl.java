@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 
@@ -14,8 +15,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 	
 	@Override
-	public List<BoardVO> boardList(int page) {
-		return mapper.listWithPage(page);
+	public List<BoardVO> boardList(SearchDTO search) {
+		return mapper.listWithPage(search);
 	}
 
 	@Override
@@ -44,4 +45,10 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
+	@Override
+	public int getTotalCount(SearchDTO search) {
+		// TODO Auto-generated method stub
+		return mapper.selectCount(search);
+	}
+	
 }

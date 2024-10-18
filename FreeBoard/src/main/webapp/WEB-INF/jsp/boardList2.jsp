@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <jsp:include page="../includes/header.jsp"></jsp:include> 
 <h3>글목록(boardList.jsp)</h3>
@@ -46,17 +45,18 @@
       </tr>
    </thead>
    <tbody>
-
-	<c:forEach var="board" items="${boardList }">
+   <%for (BoardVO board : list) {
+      // date포맷(2024-10-09 12:22:33)
+      String wdate = sdf.format(board.getWriteDate());
+   %>
       <tr>
-         <td><c:out value="${board.boardNo }"/></a></td>
-         <td><a href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page }&bno=${board.boardNo}'>${board.title }</a></td>
-         <td><c:out value="${board.writer }"/></td>
-         <td><fmt:formatDate value="${board.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-         <td><c:out value="${board.viewCnt }"/></td>
+         <td><%=board.getBoardNo() %></a></td>
+         <td><a href='board.do?page=<%=paging.getPage() %>&bno=<%=board.getBoardNo() %>'><%=board.getTitle() %></a></td>
+         <td><%=board.getWriter() %></td>
+         <td><%=wdate %></td>
+         <td><%=board.getViewCnt() %></td>
       </tr>
-	</c:forEach>
-
+   <%} %>
    </tbody>
 </table>
 

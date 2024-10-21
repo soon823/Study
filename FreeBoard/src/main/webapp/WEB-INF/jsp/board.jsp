@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../includes/header.jsp"></jsp:include> 
 <h3>상세페이지(board.jsp)</h3>
 <%
@@ -17,15 +18,21 @@
 		<th>글번호</th><td><%=bvo.getBoardNo() %></td><th>조회수</th><td><%=bvo.getViewCnt() %></td>
 	</tr>
 	<tr>
-		<th>제목</th><td colspan="3"><%=bvo.getTitle() %></td>
+		<th>제목</th><td><%=bvo.getTitle() %></td>
+		<th>작성자</th><td><%=bvo.getWriter() %></td>
 	</tr>
 	<tr>
 		<th>내용</th><td colspan="3"><textarea class="form-control" id="exampleFormControlTextarea1" name="story" rows="5" cols="50" ><%=bvo.getContent() %></textarea>
 	</td>
 	</tr>
+		<c:if test="${boardvo.img != null }">
 	<tr>
-		<th>작성자</th><td colspan="3"><%=bvo.getWriter() %></td>
+		<th>이미지</th>
+		<td colspan="3">
+		<img src="images/${boardvo.img }" width="100px">
+		</td>
 	</tr>
+		</c:if>
 	<tr>
 		<th>작성일시</th><td colspan="3"><%=wdate %></td>
 	</tr>

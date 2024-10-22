@@ -1,6 +1,33 @@
 /**
+ * 자바스크립트에 적었던것
+ * 	<ul>
+		<li>Apple</li>
+		<li>Banana</li>
+		<!-- <li></li> -->
+	</ul>
+	<table border="1">
+		<tbody>
+			<tr>
+				<th>이름</th>
+				<td>길동이</td>
+			</tr>
+		</tbody>
+	</table>
+	<table border="2">
+		<thead>
+			<tr>
+				<th>이름</th><th>나이</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+ * 
+ * 
+ * 
  *  basic.js
- */
+
 console.log("basic.js");
 
 let name = "홍길동";	//string
@@ -78,5 +105,5 @@ function makeList(){
 
 
 
-
+ */
 

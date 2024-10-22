@@ -13,7 +13,7 @@ public class JavaScriptCont implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("WEB-INF/jsp/javascript.jsp").forward(req, resp);
+		req.getRequestDispatcher("etc/javascript.tiles").forward(req, resp);
 	}
 
 }

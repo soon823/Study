@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-
   <definition name="myapp.homepage" template="/layouts/classic.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
     <put-attribute name="header" value="/tiles/banner.jsp" />
@@ -12,30 +11,34 @@
     <put-attribute name="footer" value="/tiles/credits.jsp" />
   </definition>
   
-  
+  <!-- 일반사용자 -->
   <definition name="user.home" template="/WEB-INF/layout/template.jsp">
-    <put-attribute name="title" value="일반사용자용 템플릿" />
+    <put-attribute name="title" value="일반 사용자용 템플릿" />
     <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
   </definition>
   
   <definition name="WILDCARD:board/*" extends="user.home">
-  <put-attribute name="title" value="오류가 너무 많다" />
-  <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
+  <put-attribute name="title" value="11111" />
+     <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
   </definition>
+  <!-- end of 일반사용자 -->
   
-    <definition name="admin.home" template="/WEB-INF/layout/templateAdmin.jsp">
+  <!-- 관리자 -->
+  <definition name="admin.home" template="/WEB-INF/layout/templateAdmin.jsp">
     <put-attribute name="title" value="관리자용 템플릿" />
-    <put-attribute name="bodyAdmin" value="/WEB-INF/layout/bodyAdmin.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layout/bodyAdmin.jsp" />
   </definition>
   
   <definition name="WILDCARD:admin/*" extends="admin.home">
-  <put-attribute name="title" value="오류가 너무 많다" />
-  <put-attribute name="bodyAdmin" value="/WEB-INF/jsp/{1}.jsp" />
+  <put-attribute name="title" value="11111" />
+     <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
   </definition>
+  <!-- end of 관리자 -->
   
-  <definition name="WILDCARD:admin*/*" extends="user.home">
-  <put-attribute name="title" value="일반사용자" />
-  <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+  
+  <definition name="WILDCARD:*/*" extends="user.home">
+  <put-attribute name="title" value="11111" />
+     <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
   </definition>
-  
+
 </tiles-definitions>

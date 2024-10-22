@@ -42,7 +42,7 @@
 	]]>
   </select>
   
-  <!-- ; = 구문오류 -->
+  <!-- ; <= 구문오류를 발생 -->
   <insert id="insertBoard" parameterType="board">
   	insert into tbl_board (board_no ,title ,content ,writer, img)
 	values (board_seq.nextval, #{title}, #{content} ,#{writer}, #{img})

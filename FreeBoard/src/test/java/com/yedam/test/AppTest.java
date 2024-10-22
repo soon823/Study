@@ -5,25 +5,48 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
-import com.yedam.common.SearchDTO;
-import com.yedam.mapper.BoardMapper;
-import com.yedam.vo.BoardVO;
+import com.yedam.mapper.ReplyMapper;
+import com.yedam.service.ReplyService;
+import com.yedam.service.ReplyServiceImpl;
+import com.yedam.vo.ReplyVO;
 
 public class AppTest {
 
 	public static void main(String[] args) {
 		
 		SqlSession sqlSession = DataSource.getInstance().openSession();
-		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+		ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 		
-		SearchDTO search = new SearchDTO();
-		search.setPage(1);
+//		
+//		SearchDTO search = new SearchDTO();
+//		search.setPage(1);
+//		
+//		List<BoardVO> list = mapper.listWithPage(search);
+//			for(BoardVO bvo : list) {
+//				System.out.println(bvo.toString());
+//			}
+		ReplyService svc = new ReplyServiceImpl();
 		
-		List<BoardVO> list = mapper.listWithPage(search);
-			for(BoardVO bvo : list) {
-				System.out.println(bvo.toString());
-			}
+//		List<ReplyVO> list = mapper.selectList(194);
+
+		List<ReplyVO> list = mapper.selectList(194);
+		for(ReplyVO bvo : list) {
+			System.out.println(bvo.toString());
+		}
 		
+		ReplyVO reply = new ReplyVO();
+//		reply.setReply("댓글테스트");
+//		reply.setReplyer("user01");
+//		reply.setBoardNo(194);
+//		
+//		if(mapper.insertReply(reply)==1) {
+//			sqlSession.commit();
+//		}
+		
+		reply.setBoardNo(4);	//delete가 안됨
+		if(mapper.deleteReply(reply.getReplyNo())==1) {
+			sqlSession.commit();
+		}
 		
 	}
 	

@@ -5,7 +5,7 @@
 
 svc.showMsg('Hellow');
 
-svc.rlist(194 //bno
+svc.rlist(287 //bno
 	,function(result) {
 		console.log(result);
 	}//successFnc

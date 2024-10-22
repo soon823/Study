@@ -29,7 +29,7 @@ public class AppTest {
 		
 //		List<ReplyVO> list = mapper.selectList(194);
 
-		List<ReplyVO> list = mapper.selectList(194);
+		List<ReplyVO> list = mapper.selectList(287);
 		for(ReplyVO bvo : list) {
 			System.out.println(bvo.toString());
 		}
@@ -43,8 +43,8 @@ public class AppTest {
 //			sqlSession.commit();
 //		}
 		
-		reply.setBoardNo(4);	//delete가 안됨
-		if(mapper.deleteReply(reply.getReplyNo())==1) {
+		reply.setBoardNo(200);	//delete가 안됨
+		if(mapper.deleteReply(reply.getBoardNo())==1) {
 			sqlSession.commit();
 		}
 		

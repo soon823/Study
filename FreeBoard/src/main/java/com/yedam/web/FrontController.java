@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.JavaScriptCont;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
 import com.yedam.control.board.BoardControl;

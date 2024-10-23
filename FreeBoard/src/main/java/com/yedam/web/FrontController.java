@@ -26,7 +26,10 @@ import com.yedam.control.member.MemberAddControl;
 import com.yedam.control.member.MemberAddFormControl;
 import com.yedam.control.member.MemberJsonCont;
 import com.yedam.control.member.MemberListControl;
+import com.yedam.control.reply.AddReplyCont;
 import com.yedam.control.reply.RelyListCont;
+import com.yedam.control.reply.RemoveReplyCont;
+import com.yedam.control.reply.ReplyCountCont;
 
 //@WebServlet("*.do")
 public class FrontController extends HttpServlet{
@@ -71,6 +74,9 @@ public class FrontController extends HttpServlet{
 		
 		//댓글 관련
 		map.put("/replyList.do", new RelyListCont());
+		map.put("/removeReply.do", new RemoveReplyCont());
+		map.put("/addReply.do", new AddReplyCont());
+		map.put("/replyCount.do", new ReplyCountCont());
 		
 	}
 	

@@ -6,28 +6,52 @@
 
 	<select id="selectList" parameterType="int" resultType="reply">
 		select *
-		from   tbl_reply
-		where  board_no = #{boardNo}
+		from tbl_reply
+		where board_no = #{boardNo}
+		order by reply_no desc
 	</select>
 	
+	<select id="selectListPaging">
+		select a.*
+		from (select /*+ INDEX_DESC (r pk_reply) */ ROWNUM rn, r.* 
+		      from tbl_reply r
+		      where board_no = #{bno} ) a
+		where a.rn > (#{page} -1) * 5
+		<![CDATA[
+		and   a.rn <= #{page} * 5
+		]]>
+	</select>
+
 	<insert id="insertReply" parameterType="reply">
+		<selectKey keyProperty="replyNo" order="BEFORE" resultType="int">
+			select reply_seq.nextval from dual
+		</selectKey>
 		insert into tbl_reply(reply_no, reply, replyer, board_no)
-		values(reply_seq.nextval, #{reply}, #{replyer}, #{boardNo})
+		values(#{replyNo}, #{reply}, #{replyer}, #{boardNo})
 	</insert>
-	
+
 	<delete id="deleteReply" parameterType="int">
 		delete from tbl_reply
-		where board_no = #{boardNo}
+		where reply_no = #{replyNo}
 	</delete>
-	
+
 	<select id="selectReply" parameterType="int" resultType="reply">
-		select 	reply_no,
-    			reply,
-    			replyer,
-    			board_no,
-    			reply_date
-    	from 	tbl_reply
-    	where 	reply_no = #{replyNo}
+		select
+		reply_no,
+		reply,
+		replyer,
+		board_no,
+		reply_date
+		from tbl_reply
+		where reply_no = #{replyNo}
+	</select>
+	
+	<select id="selectCount" parameterType="int">
+		select count(1)
+		from tbl_reply
+		where board_no = #{boardNo}
 	</select>
 
 </mapper>
+
+

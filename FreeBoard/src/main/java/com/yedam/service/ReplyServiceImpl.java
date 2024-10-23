@@ -10,13 +10,13 @@ import com.yedam.vo.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService{
 	
-	SqlSession sqlSession = DataSource.getInstance().openSession();
+	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 	
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
+	public List<ReplyVO> replyList(int boardNo, int page) {
 		// TODO Auto-generated method stub
-		return mapper.selectList(boardNo);
+		return mapper.selectListPaging(boardNo, page);
 	}
 
 	@Override
@@ -35,6 +35,12 @@ public class ReplyServiceImpl implements ReplyService{
 	public ReplyVO getReply(int replyNo) {
 		// TODO Auto-generated method stub
 		return mapper.selectReply(replyNo);
+	}
+	
+	@Override
+	public int replyCount(int boardNo) {
+		
+		return mapper.selectCount(boardNo);
 	}
 	
 	@Override

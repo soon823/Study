@@ -15,7 +15,7 @@
   
   <insert id="insertEvent" parameterType="hashmap">
   	insert into tbl_event (title, start_date, end_date)
-  	values(#{title}, #{start_date}, #{end_date})
+  	values(#{title}, #{start}, #{end})
   </insert>
   
 </mapper>

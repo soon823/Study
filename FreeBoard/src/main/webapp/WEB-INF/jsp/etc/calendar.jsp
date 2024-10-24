@@ -7,13 +7,25 @@
 <script src='dist/index.global.js'></script>
 <script>
 
-  document.addEventListener('DOMContentLoaded', async function() {
-    var calendarEl = document.getElementById('calendar');
+document.addEventListener('DOMContentLoaded', async function() {
+	var calendarEl = document.getElementById('calendar');
     
     //Ajax호출
     //new Promis(-성공function(){}, -실패function(){}) <- fetch안에 promis라는 객체가 반환됨
     //promis객체가 반환될때  await(async라는 함수안에서만 작동) 수행코드 -> 그다음 코드 실행
     var eventdata = [];
+    
+    try {
+        let resolve = await fetch('eventList.do');
+        if (!resolve.ok) {
+            throw new Error('Network response was not ok');
+        }
+        let result = await resolve.json();
+        eventdata = result;
+        console.log(eventdata);
+    } catch (error) {
+        console.error('JSON 파싱 오류:', error);
+    }
     
     let resolve = await fetch('eventList.do')	//fetch('eventList.do')
     let result = await resolve.json(); 			//	.then(resolve => resolve.json())
@@ -22,9 +34,9 @@
 											    //	    console.log(result);
 											    //	})
 											    //	.catch(err => console.log(err)); 
-
+    
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
+    	headerToolbar: {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
@@ -34,25 +46,25 @@
       selectable: true,
       selectMirror: true,
       select: function(arg) {
-        var title = prompt('Event Title:');
+      	var title = prompt('Event Title:');
         if (title) {
         	console.log(arg);	//start, end
+        	    	
         	fetch('addEvent.do?title='+title+'&start='+arg.startStr+'&end='+arg.endStr)
-        		.then(resolve=>resolve.json())
-        		.then(result => {
-	        		if(result.retCode == 'OK'){
-				          calendar.addEvent({
-				            title: title,
-				            start: arg.start,
-				            end: arg.end,
-				            allDay: arg.allDay })   			
-		        		}else if(result.retCode == 'FAIL'){
-		        			alert('에러')
-		        		}
-		        	})
-        		.catch(err => console.log(err));
-        	
-         
+        	.then(resolve => resolve.json())
+        	.then(result => {
+	        	if(result.retCode == 'OK'){
+				    calendar.addEvent({
+				    title: title,
+				    start: arg.start,
+				    end: arg.end,
+				    allDay: arg.allDay })   			
+		        }else if(result.retCode == 'FAIL'){
+		        	alert('에러');
+		        }
+		    })
+        	.catch(err => {console.log(err);} );
+        	        
         }
         calendar.unselect()
       },
@@ -61,14 +73,14 @@
           arg.event.remove()
         }
       },
-      editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-      events: eventdata		//[{},{},{}......,{}] 배열데이터를 담은 변수
+    	editable: true,
+    	dayMaxEvents: true, // allow "more" link when too many events
+    	events: eventdata		//[{},{},{}......,{}] 배열데이터를 담은 변수
       
     });
 
-    calendar.render();	//화면출력
-  });
+	calendar.render();	//화면출력
+});
 
 </script>
 <style>

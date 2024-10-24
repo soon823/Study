@@ -33,6 +33,8 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logOut.do">로그아웃(<%=logId %>)</a>
                     <%} %>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="javascript.do">자바스크립트 연습</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">차트</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="calendar.do">일정</a>
                 </div>
             </div>
             <!-- Page content wrapper-->

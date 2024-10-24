@@ -1,52 +1,25 @@
 package com.yedam.test;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.yedam.common.DataSource;
-import com.yedam.mapper.ReplyMapper;
-import com.yedam.service.ReplyService;
-import com.yedam.service.ReplyServiceImpl;
-import com.yedam.vo.ReplyVO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.service.BoardService;
+import com.yedam.service.BoardServiceImpl;
 
 public class AppTest {
 
 	public static void main(String[] args) {
 		
-		SqlSession sqlSession = DataSource.getInstance().openSession();
-		ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+		BoardService svc = new BoardServiceImpl();
+		List<Map<String, Object>> result = svc.countByWriter();
 		
-//		
-//		SearchDTO search = new SearchDTO();
-//		search.setPage(1);
-//		
-//		List<BoardVO> list = mapper.listWithPage(search);
-//			for(BoardVO bvo : list) {
-//				System.out.println(bvo.toString());
-//			}
-		ReplyService svc = new ReplyServiceImpl();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(result);
 		
-//		List<ReplyVO> list = mapper.selectList(194);
+		System.out.println(json);
 
-		List<ReplyVO> list = mapper.selectList(287);
-		for(ReplyVO bvo : list) {
-			System.out.println(bvo.toString());
-		}
-		
-		ReplyVO reply = new ReplyVO();
-//		reply.setReply("댓글테스트");
-//		reply.setReplyer("user01");
-//		reply.setBoardNo(194);
-//		
-//		if(mapper.insertReply(reply)==1) {
-//			sqlSession.commit();
-//		}
-		
-		reply.setBoardNo(200);	//delete가 안됨
-		if(mapper.deleteReply(reply.getBoardNo())==1) {
-			sqlSession.commit();
-		}
 		
 	}
 	

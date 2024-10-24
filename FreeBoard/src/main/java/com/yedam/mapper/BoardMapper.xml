@@ -103,4 +103,14 @@
    	  </choose>
    	  </where>
   </select>
+  
+  <select id="countByWriter" resultType="hashmap"> 
+	select writer as "writer", member_name as "member_name", count(1) as "count"
+	from tbl_board b
+	join tbl_member m
+	on b.writer = m.member_id
+	group by writer, member_name
+  </select>
+  
+  
 </mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.CalendarMapper">
+  <!-- select id = 메소드이름 -->
+  <!-- resultType,parameterType = 반환타입(클래스경로) ,mybatis-config.xml에서 <typeAlias alias="member" type="com.yedam.vo.MemberVO"/> 작성으로 경로대신 alias사용-->
+  
+  <select id="eventList" resultType="hashmap">
+  	select title as "title",
+  		   start_date as "start",
+  		   end_date as "end"
+	from   tbl_event
+  </select>
+  
+  <insert id="insertEvent" parameterType="hashmap">
+  	insert into tbl_event (title, start_date, end_date)
+  	values(#{title}, #{start_date}, #{end_date})
+  </insert>
+  
+</mapper>

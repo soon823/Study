@@ -15,18 +15,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     //promis객체가 반환될때  await(async라는 함수안에서만 작동) 수행코드 -> 그다음 코드 실행
     var eventdata = [];
     
-    try {
-        let resolve = await fetch('eventList.do');
-        if (!resolve.ok) {
-            throw new Error('Network response was not ok');
-        }
-        let result = await resolve.json();
-        eventdata = result;
-        console.log(eventdata);
-    } catch (error) {
-        console.error('JSON 파싱 오류:', error);
-    }
-    
     let resolve = await fetch('eventList.do')	//fetch('eventList.do')
     let result = await resolve.json(); 			//	.then(resolve => resolve.json())
     eventdata = result;							//	.then(result => {
